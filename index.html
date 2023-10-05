@@ -8,25 +8,9 @@
     body {
       margin: 0;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      place-items: center;
       background: #EBF0F5;
-    }
-
-    .circle {
-      border-radius: 50%;
-      height: 200px;
-      width: 200px;
-      background: #009cde;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    i.checkmark {
-      color: #fff;
-      font-size: 100px;
     }
 
     .card {
@@ -53,6 +37,13 @@
       margin: 0;
     }
 
+    i {
+      color: #fff;
+      font-size: 60px;
+      line-height: 120px;
+      margin-left: -15px;
+    }
+
     @media (max-width: 768px) {
       .card {
         padding: 10px;
@@ -66,15 +57,16 @@
         font-size: 14px;
       }
 
-      i.checkmark {
-        font-size: 60px;
+      i {
+        font-size: 40px;
+        line-height: 100px;
       }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="circle">
+    <div style="border-radius: 100px; height: 100px; width: 100px; background: #009cde; margin: 0 auto;">
       <i class="checkmark">✓</i>
     </div>
     <h1>Payment Successful</h1>
