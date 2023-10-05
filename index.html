@@ -72,19 +72,37 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <?php
-    $paymentStatus = isset($_GET['payment']) ? $_GET['payment'] : 'success';
-    if ($paymentStatus === 'success') {
-      echo '<div class="success-icon"><i class="checkmark">✓</i></div>';
-      echo '<h1>Payment Successful</h1>';
-      echo '<p>Thank you for your payment!<br>Your transaction has been successfully processed!</p>';
-    } elseif ($paymentStatus === 'fail') {
-      echo '<div class="fail-icon"><i class="cross">✕</i></div>';
-      echo '<h1>Payment Unsuccessful</h1>';
-      echo '<p>Sorry, your payment could not be processed. Please try again later.</p>';
-    }
-    ?>
+  <div class="card" id="paymentCard">
+    <div id="iconContainer">
+      <i id="icon" class="checkmark success-icon">✓</i>
+    </div>
+    <h1 id="paymentStatus">Payment Successful</h1>
+    <p id="paymentMessage">Thank you for your payment!<br>Your transaction has been successfully processed!</p>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var queryParams = new URLSearchParams(window.location.search);
+      var paymentStatus = queryParams.get("payment");
+
+      var icon = document.getElementById("icon");
+      var iconContainer = document.getElementById("iconContainer");
+      var paymentStatusElement = document.getElementById("paymentStatus");
+      var paymentMessage = document.getElementById("paymentMessage");
+
+      if (paymentStatus === "success") {
+        icon.classList.add("success-icon");
+        icon.innerText = "✓";
+        paymentStatusElement.innerText = "Payment Successful";
+        paymentMessage.innerText = "Thank you for your payment!\nYour transaction has been successfully processed!";
+      } else if (paymentStatus === "fail") {
+        icon.classList.remove("success-icon");
+        icon.classList.add("fail-icon");
+        icon.innerText = "✕";
+        paymentStatusElement.innerText = "Payment Unsuccessful";
+        paymentMessage.innerText = "Sorry, your payment could not be processed. Please try again later.";
+      }
+    });
+  </script>
 </body>
 </html>
