@@ -37,14 +37,26 @@
       margin: 0;
     }
 
-    i {
-      font-size: 60px;
-      line-height: 120px;
-      margin-left: -15px;
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icon-circle {
+      background: #009cde;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      margin-bottom: 10px;
     }
 
     .success-icon {
-      color: #009cde;
+      color: #fff;
     }
 
     .fail-icon {
@@ -64,17 +76,19 @@
         font-size: 14px;
       }
 
-      i {
-        font-size: 40px;
-        line-height: 100px;
+      .icon-circle {
+        width: 80px;
+        height: 80px;
       }
     }
   </style>
 </head>
 <body>
   <div class="card" id="paymentCard">
-    <div id="iconContainer">
-      <i id="icon" class="checkmark success-icon">✓</i>
+    <div class="icon-container">
+      <div class="icon-circle">
+        <i id="icon" class="checkmark success-icon">✓</i>
+      </div>
     </div>
     <h1 id="paymentStatus">Payment Successful</h1>
     <p id="paymentMessage">Thank you for your payment!<br>Your transaction has been successfully processed!</p>
@@ -86,21 +100,23 @@
       var paymentStatus = queryParams.get("payment");
 
       var icon = document.getElementById("icon");
-      var iconContainer = document.getElementById("iconContainer");
+      var iconCircle = document.querySelector(".icon-circle");
       var paymentStatusElement = document.getElementById("paymentStatus");
       var paymentMessage = document.getElementById("paymentMessage");
 
       if (paymentStatus === "success") {
+        iconCircle.style.background = "#009cde";
         icon.classList.add("success-icon");
         icon.innerText = "✓";
         paymentStatusElement.innerText = "Payment Successful";
         paymentMessage.innerText = "Thank you for your payment!\nYour transaction has been successfully processed!";
       } else if (paymentStatus === "fail") {
+        iconCircle.style.background = "#FF5733";
         icon.classList.remove("success-icon");
         icon.classList.add("fail-icon");
         icon.innerText = "✕";
         paymentStatusElement.innerText = "Payment Unsuccessful";
-        paymentMessage.innerText = "Sorry, your payment could not be processed. Please try again later.";
+        paymentMessage.innerText = "Sorry, your payment could not be processed.\nPlease try again later.";
       }
     });
   </script>
